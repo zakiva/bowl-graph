@@ -44,7 +44,14 @@ const directionalLight = new THREE.DirectionalLight(0xffffff, 0.8);
 
 // Position the light vector origin high overhead, offset slightly right, and far down-lane to project crisp directional shadow maps
 // Coordinates: X = 5 (right side flank spread), Y = 20 (high ceiling elevation plane), Z = -20 (positioned forward toward the pins)
-directionalLight.position.set(5, 20, -20);
+// zahi: trying to change to z=20 to addm ore lights on the pins. 
+directionalLight.position.set(5, 20, 20);
+
+// Localized overhead light to fully illuminate the pin deck area
+const pinDeckLight = new THREE.DirectionalLight(0xffffff, 0.4);
+pinDeckLight.position.set(0, 10, -55); // Directly above the pin formation
+pinDeckLight.castShadow = true;
+scene.add(pinDeckLight);
 
 // Append the overhead directional light source transform pointer reference directly into our root scene hierarchy index
 scene.add(directionalLight);
