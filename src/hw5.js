@@ -493,6 +493,7 @@ const controls = new OrbitControls(camera, renderer.domElement);
 
 // Instantiate a master boolean status flag determining if mouse coordinate drag tracking loops are active
 let isOrbitEnabled = true;
+let currentView = "bowler"; // Tracks whether we are looking from the bowler or pin perspective
 
 // Evaluate alphanumeric console key events pressed down by the application client user
 function handleKeyDown(e) {
@@ -500,6 +501,22 @@ function handleKeyDown(e) {
   if (e.key === "o" || e.key === "O") {
     // Invert the boolean state logic flag values cleanly using an algebraic logic inverse switch command
     isOrbitEnabled = !isOrbitEnabled;
+  }
+  // Toggle between Bowler View and Pin-End View
+  if (e.key === "v" || e.key === "V") {
+    if (currentView === "bowler") {
+      // Snap camera close to the pin deck and change orbit focus to the pins
+      controls.target.set(0, 1, -57);          // Set focus target to center of pin deck
+      camera.position.set(0, 3, -50);          // Position camera slightly above and in front of pins
+      currentView = "pin";
+    } else {
+      // Reset back to standard Bowler's Perspective
+      controls.target.set(0, 0, 0);            // Reset focus back to the foul line
+      camera.position.set(0, 5, 12);           // Return camera to starter position
+      currentView = "bowler";
+    }
+    // Force OrbitControls to register the new layout transformation matrix immediately
+    controls.update();
   }
 }
 
