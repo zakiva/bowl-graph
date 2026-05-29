@@ -207,7 +207,7 @@ function createBowlingLane() {
   // DEPTH BUFFER MITIGATION CONFIGURATION: To permanently prevent "Z-Fighting" bugs where overlapping flat
   // planes struggle for drawing priority and flicker randomly, all vector indicators sit elevated at Y = 0.102.
 
-  // 5. REGULATION FOUL LINE STRIPE
+  // REGULATION FOUL LINE STRIPE
   // Create a flat 2D lane boundary indicator crossing full width with an explicit structural depth thickness of 0.08 units
   const foulLineGeometry = new THREE.PlaneGeometry(3.5, 0.08);
   
@@ -221,7 +221,7 @@ function createBowlingLane() {
   scene.add(foulLine);
 
 
-  // 6. APPROACH ALIGNMENT DOTS
+  // APPROACH ALIGNMENT DOTS
   // Allocate exact 2D circle shapes to generate high-fidelity circular player tracking markers across the wood floor
   // Sizing parameters: Circular radius size (0.04 units), smooth perimeter triangulation interpolation count (32 steps)
   const dotGeometry = new THREE.CircleGeometry(0.04, 32);
@@ -240,7 +240,7 @@ function createBowlingLane() {
   });
 
 
-  // 7. LANE TARGETING CHEVRONS (AIMING ARROWS)
+  // LANE TARGETING CHEVRONS (AIMING ARROWS)
   // Design Architecture: Initializing a flat CircleGeometry restricted to exactly 3 perimeter segments forces a triangle plane.
   // This satisfies requirements to engineer native "chevron arrowhead shapes utilizing flat geometric plane models".
   // Sizing parameters: Bounding radius threshold scale (0.14), radial segments locked to 3 (triangle configuration)
@@ -271,7 +271,7 @@ createBowlingLane();
 
 
 // ============================================================================
-// MILESTONE 4: PROCEDURAL COMPONENT PIN ASSEMBLY & TRIANGULAR DEPLOYMENT
+// PROCEDURAL COMPONENT PIN ASSEMBLY & TRIANGULAR DEPLOYMENT
 // ============================================================================
 
 // PROCEDURAL COMPONENT CONSTRUCTION & MATERIAL ATTRIBUTE WRAPPER
@@ -292,7 +292,7 @@ function createBowlingPin() {
     shininess: 100     // Matches uniform gloss coats to prevent visual fragment mismatches under lighting loops
   });
 
-  // 8. PIN LOWER BELLY BODY COMPONENT
+  // PIN LOWER BELLY BODY COMPONENT
   // Generate a tapered cylinder primitive mapping out the wide bottom base belly curve profiles of a pin
   // Dimensions: Top circle radius (0.2), bottom base circle radius (0.13), total slice vertical height (0.55), segments (32)
   const baseGeometry = new THREE.CylinderGeometry(0.2, 0.13, 0.55, 32);
@@ -303,7 +303,7 @@ function createBowlingPin() {
   baseMesh.receiveShadow = true;  // Enable surface sections to receive ambient shadow overlays
   pinGroup.add(baseMesh);         // Inject child mesh node securely inside parent pin coordination group folder container
 
-  // 9. PIN TAPERED SLENDER NECK COLUMN
+  // PIN TAPERED SLENDER NECK COLUMN
   // Model the narrow inward-sloping neck column transitions utilizing an inverted slender cone cylinder segment
   // Dimensions: Top head join radius (0.08), bottom base join radius (0.2), segment vertical height (0.45), segments (32)
   const neckGeometry = new THREE.CylinderGeometry(0.08, 0.2, 0.45, 32);
@@ -314,27 +314,21 @@ function createBowlingPin() {
   neckMesh.receiveShadow = true;
   pinGroup.add(neckMesh);         // Bind neck slice child straight into parent tracking coordinate group
 
-  // 10. PIN IDENTIFICATION RED NECK STRIPE BAND
+  // PIN IDENTIFICATION RED NECK STRIPE BAND
   // Assemble a thin hollow ring collar sleeve wrapping exactly around the slim center line of the white neck cylinder
   // Design Note: Inner radius expanded to 0.111 to wrap over the neck mesh cleanly without structural clipping or Z-fighting.
   // Dimensions: Top radius scale (0.111), bottom radius scale (0.125), component vertical ring stripe height (0.08), segments (32)
-  // const stripeGeometry = new THREE.CylinderGeometry(0.111, 0.125, 0.08, 32);
-  // const stripeMesh = new THREE.Mesh(stripeGeometry, pinRedMaterial);
-  // // Center collar alignment covering the red identifier ring zone on the neck column at local height position coordinate Y = 0.75
-  // stripeMesh.position.y = 0.75;
-  
   // EDIT: Bumping up the radii (0.135 and 0.145) and moving the elevation up to Y = 0.83 
   // forces the red ring to sit beautifully on the outside skin of the white bottleneck.
   const stripeGeometry = new THREE.CylinderGeometry(0.135, 0.145, 0.06, 32);
   const stripeMesh = new THREE.Mesh(stripeGeometry, pinRedMaterial);
   stripeMesh.position.y = 0.83;
-
   
   stripeMesh.castShadow = true;   // Compute shadow maps tracking the custom colored ring stripes
   stripeMesh.receiveShadow = true;
   pinGroup.add(stripeMesh);       // Bind stripe ring component into the parent coordinate node list folder
 
-  // 11. PIN ROUNDED HEAD CROWN CAP
+  // PIN ROUNDED HEAD CROWN CAP
   // Create a sphere geometry primitive representing the smooth spherical top head tip of the target pin
   // Dimensions: Crown sphere radius boundary (0.095 units), horizontal latitude steps (32), vertical longitude loops (32)
   const headGeometry = new THREE.SphereGeometry(0.095, 32, 32);
@@ -391,13 +385,13 @@ deployPinFormation();
 
 
 // ============================================================================
-// MILESTONE 5: STATIC HIGH-POLISH POLYGON BOWLING BALL
+// STATIC HIGH-POLISH POLYGON BOWLING BALL
 // ============================================================================
 function createStaticBowlingBall() {
   // Create an independent parent transformation Group node to bundle the core sphere and drilled finger holes together
   const ballGroup = new THREE.Group();
 
-  // TASK 5.1: CORE GEOMETRY & HIGH SPECULARITY SHADER MATERIAL SELECTION
+  // CORE GEOMETRY & HIGH SPECULARITY SHADER MATERIAL SELECTION
   // Instantiate an explicit sphere geometry primitive tracking a regulation radius size of exactly 0.45 units (0.9 diameter)
   // Sizing matrix: Bounding radius (0.45), horizontal width segments (64), vertical height loops (64) for perfect curved smoothness
   const ballGeometry = new THREE.SphereGeometry(0.45, 64, 64);
@@ -421,7 +415,7 @@ function createStaticBowlingBall() {
   ballGroup.add(ballCoreMesh);
 
 
-  // TASK 5.2: ASYMMETRIC DRILL PATHS MODELING (GRIPPING HOLES)
+  // ASYMMETRIC DRILL PATHS MODELING (GRIPPING HOLES)
   // Shape structure setup: Tiny dark cylinder primitives embedded slightly into the upper outer face shell of the core ball sphere.
   // Dimensions: Top radius (0.03), bottom base radius (0.03), depth drill length thickness (0.08), resolution segments (16)
   const holeGeometry = new THREE.CylinderGeometry(0.03, 0.03, 0.08, 16);
@@ -450,7 +444,7 @@ function createStaticBowlingBall() {
   });
 
 
-  // TASK 5.3: PLATFORM CENTERING & STATIONARY RUNTIME PLACEMENT
+  // PLATFORM CENTERING & STATIONARY RUNTIME PLACEMENT
   // Placement: Align ball centered along X axis = 0. Position back on approach track at Z = 4
   // Height calculation math: Approach platform top surface sits at Y = 0.1. Bounding sphere core radius tracks at 0.45.
   // Center translation equation: Y = 0.1 (floor level) + 0.45 (radius offset) = 0.55. This forces the ball base to sit perfectly flush *on* the track.
