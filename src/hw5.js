@@ -451,10 +451,10 @@ function createStaticBowlingBall() {
 
 
   // TASK 5.3: PLATFORM CENTERING & STATIONARY RUNTIME PLACEMENT
-  // Placement: Align ball centered along X axis = 0. Position back on approach track at Z = 10.0 per assignment example specifications.
+  // Placement: Align ball centered along X axis = 0. Position back on approach track at Z = 4
   // Height calculation math: Approach platform top surface sits at Y = 0.1. Bounding sphere core radius tracks at 0.45.
   // Center translation equation: Y = 0.1 (floor level) + 0.45 (radius offset) = 0.55. This forces the ball base to sit perfectly flush *on* the track.
-  ballGroup.position.set(0, 0.55, 10.0);
+  ballGroup.position.set(0, 0.55, 4);
 
   // Tilt the ball 45 degrees forward so all 3 holes face up at the camera
   ballGroup.rotation.x = degrees_to_radians(45);
