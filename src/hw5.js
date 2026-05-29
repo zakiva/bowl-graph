@@ -1,8 +1,7 @@
 // ============================================================================
-// COMPUTER GRAPHICS HW05 - MASTER BOWLING ALLEY SIMULATION ENGINE
+// COMPUTER GRAPHICS - MASTER BOWLING ALLEY SIMULATION ENGINE
 // ============================================================================
 
-// Import OrbitControls from our local vendor file to allow interactive click-and-drag camera orbiting, zooming, and panning
 import { OrbitControls } from './OrbitControls.js';
 
 // 1. CORE WEBGL GLOBAL CONTEXT INITIALIZATION
@@ -44,7 +43,7 @@ const directionalLight = new THREE.DirectionalLight(0xffffff, 0.8);
 
 // Position the light vector origin high overhead, offset slightly right, and far down-lane to project crisp directional shadow maps
 // Coordinates: X = 5 (right side flank spread), Y = 20 (high ceiling elevation plane), Z = -20 (positioned forward toward the pins)
-// zahi: trying to change to z=20 to addm ore lights on the pins. 
+// Update: trying to change to z=20 to add more lights on the pins - Verified. 
 directionalLight.position.set(5, 20, 20);
 
 // Localized overhead light to fully illuminate the pin deck area
@@ -69,7 +68,6 @@ directionalLight.castShadow = true;
 
 // Helper conversion subroutine transforming degree angular values into standard Cartesian radian metrics required by Three.js
 function degrees_to_radians(degrees) {
-  // Grab the immutable mathematical constant Archimedes Pi ratio property value approximation (3.14159)
   var pi = Math.PI;
   // Calculate conversion: multiply input scalar degrees by Pi divided by a standard half-circle angular index limit (180)
   return degrees * (pi / 180);
@@ -82,10 +80,10 @@ function degrees_to_radians(degrees) {
 function createBowlingLane() {
   
   // --------------------------------------------------------------------------
-  // MILESTONE 2: PHYSICAL FLOORS, PLATES, AND DRAINAGE INFRASTRUCTURE
+  // PHYSICAL FLOORS, PLATES, AND DRAINAGE INFRASTRUCTURE
   // --------------------------------------------------------------------------
 
-  // 1. MAIN WOOD LANE PLATFORM
+  // MAIN WOOD LANE PLATFORM
   // Allocate hardware memory structures tracking a standard box profile matching standard regulation lane proportions
   // Specs: Width (3.5 units), physical vertical core thickness thickness (0.2), lane length extension span (60)
   const laneGeometry = new THREE.BoxGeometry(3.5, 0.2, 60);
@@ -112,7 +110,7 @@ function createBowlingLane() {
   scene.add(lane);
 
 
-  // 2. PLAYER APPROACH RUNWAY PLATFORM
+  // PLAYER APPROACH RUNWAY PLATFORM
   // Define physical boundaries tracking the player stance walkway track stretching out right behind the foul line boundary
   // Sizing: Width matches lane floor (3.5), vertical deck thickness matches lane (0.2), approach length scales out 15 units
   const approachGeometry = new THREE.BoxGeometry(3.5, 0.2, 15);
@@ -140,7 +138,7 @@ function createBowlingLane() {
   scene.add(approach);
 
 
-  // 3. FLANKING BALL DROP GUTTER TRACKS
+  // FLANKING BALL DROP GUTTER TRACKS
   // Generate the side drainage drop tracks utilizing narrow elongated bounding boxes parallel to the main lane profile
   // Structural settings: Width (0.4 units), thickness height depth (0.1, half the lane level), length extends full length (60)
   const gutterGeometry = new THREE.BoxGeometry(0.4, 0.1, 60);
@@ -178,7 +176,7 @@ function createBowlingLane() {
   scene.add(rightGutter);
 
 
-  // 4. REINFORCED COMPOSITE TARGET PIN DECK PLATE
+  // REINFORCED COMPOSITE TARGET PIN DECK PLATE
   // Configure the high-impact base sheet layer located at the far terminal end to ground the pin setup array
   // Sheet sizing: Width covers lane (3.5), depth thickness layer (0.01), length covers pin formation space (5)
   const pinDeckGeometry = new THREE.BoxGeometry(3.5, 0.01, 5);
@@ -204,7 +202,7 @@ function createBowlingLane() {
 
 
   // --------------------------------------------------------------------------
-  // MILESTONE 3: ANALYTICAL SURFACE VECTOR MARKINGS
+  // ANALYTICAL SURFACE VECTOR MARKINGS
   // --------------------------------------------------------------------------
   // DEPTH BUFFER MITIGATION CONFIGURATION: To permanently prevent "Z-Fighting" bugs where overlapping flat
   // planes struggle for drawing priority and flicker randomly, all vector indicators sit elevated at Y = 0.102.
