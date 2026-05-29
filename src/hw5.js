@@ -449,6 +449,9 @@ function createStaticBowlingBall() {
   // Height calculation math: Approach platform top surface sits at Y = 0.1. Bounding sphere core radius tracks at 0.45.
   // Center translation equation: Y = 0.1 (floor level) + 0.45 (radius offset) = 0.55. This forces the ball base to sit perfectly flush *on* the track.
   ballGroup.position.set(0, 0.55, 10.0);
+
+  // Tilt the ball 45 degrees forward so all 3 holes face up at the camera
+  ballGroup.rotation.x = degrees_to_radians(45);
   
   // Register the complete composite static bowling ball group system node directly into the master active scene graph collection tree
   scene.add(ballGroup);
