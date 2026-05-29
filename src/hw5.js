@@ -320,10 +320,18 @@ function createBowlingPin() {
   // Assemble a thin hollow ring collar sleeve wrapping exactly around the slim center line of the white neck cylinder
   // Design Note: Inner radius expanded to 0.111 to wrap over the neck mesh cleanly without structural clipping or Z-fighting.
   // Dimensions: Top radius scale (0.111), bottom radius scale (0.125), component vertical ring stripe height (0.08), segments (32)
-  const stripeGeometry = new THREE.CylinderGeometry(0.111, 0.125, 0.08, 32);
+  // const stripeGeometry = new THREE.CylinderGeometry(0.111, 0.125, 0.08, 32);
+  // const stripeMesh = new THREE.Mesh(stripeGeometry, pinRedMaterial);
+  // // Center collar alignment covering the red identifier ring zone on the neck column at local height position coordinate Y = 0.75
+  // stripeMesh.position.y = 0.75;
+  
+  // EDIT: Bumping up the radii (0.135 and 0.145) and moving the elevation up to Y = 0.83 
+  // forces the red ring to sit beautifully on the outside skin of the white bottleneck.
+  const stripeGeometry = new THREE.CylinderGeometry(0.135, 0.145, 0.06, 32);
   const stripeMesh = new THREE.Mesh(stripeGeometry, pinRedMaterial);
-  // Center collar alignment covering the red identifier ring zone on the neck column at local height position coordinate Y = 0.75
-  stripeMesh.position.y = 0.75;
+  stripeMesh.position.y = 0.83;
+
+  
   stripeMesh.castShadow = true;   // Compute shadow maps tracking the custom colored ring stripes
   stripeMesh.receiveShadow = true;
   pinGroup.add(stripeMesh);       // Bind stripe ring component into the parent coordinate node list folder
