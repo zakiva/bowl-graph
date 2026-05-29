@@ -243,9 +243,9 @@ function createBowlingLane() {
   // 7. LANE TARGETING CHEVRONS (AIMING ARROWS)
   // Design Architecture: Initializing a flat CircleGeometry restricted to exactly 3 perimeter segments forces a triangle plane.
   // This satisfies requirements to engineer native "chevron arrowhead shapes utilizing flat geometric plane models".
-  // Sizing parameters: Bounding radius threshold scale (0.07), radial segments locked to 3 (triangle configuration)
-  const arrowGeometry = new THREE.CircleGeometry(0.07, 3);
-  const arrowMaterial = new THREE.MeshBasicMaterial({ color: 0x5c4033 }); // Traditional dark walnut wood inlay stain hex color code
+  // Sizing parameters: Bounding radius threshold scale (0.14), radial segments locked to 3 (triangle configuration)
+  const arrowGeometry = new THREE.CircleGeometry(0.14, 3);
+  const arrowMaterial = new THREE.MeshBasicMaterial({ color: 0x222222 });
   
   // Configure layout vector settings mapping an accurate symmetrical chevron V-formation pointing down-lane
   // The central apex arrow locks exactly 15 units out at Z = -15.0, with outer flank pairs tapering back symmetrically.
