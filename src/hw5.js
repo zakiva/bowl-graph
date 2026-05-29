@@ -227,7 +227,7 @@ function createBowlingLane() {
   const dotGeometry = new THREE.CircleGeometry(0.04, 32);
   const dotMaterial = new THREE.MeshBasicMaterial({ color: 0x222222 }); // Deep ink charcoal black color mask
   const dotPositionsX = [-1.2, -0.6, 0, 0.6, 1.2]; // Precise horizontal offset lines crossing width layout tracks
-  const dotRowsZ = [3.0, 11.0]; // Two independent row paths positioned along the length of the player approach zone
+  const dotRowsZ = [2.0, 7.0]; // Two independent row paths positioned along the length of the player approach zone
 
   // Run nested iteration sweeps to distribute the double row marker circle index meshes cleanly
   dotRowsZ.forEach((zPos) => { // Outer loop path: Step sequentially along the length tracking depth down the approach runway
